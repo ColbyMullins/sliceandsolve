@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://o5d6orguuvn"]
+
+[ext_resource type="Texture2D" uid="uid://cwc4ul1jjflr1" path="res://pics/icon.svg" id="1_mns87"]
+[ext_resource type="Script" path="res://scripts/spawner.gd" id="1_pq8s4"]
+
+[node name="Spawner" type="Sprite2D"]
+position = Vector2(563, 281)
+texture = ExtResource("1_mns87")
+script = ExtResource("1_pq8s4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -30)
+scale = Vector2(0.421875, 0.421875)
+texture = ExtResource("1_mns87")

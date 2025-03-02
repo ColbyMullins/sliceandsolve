@@ -1,0 +1,115 @@
+[gd_scene load_steps=8 format=3 uid="uid://br3o1txfjfw2s"]
+
+[ext_resource type="Script" path="res://scripts/node_2d.gd" id="1_gbjhp"]
+[ext_resource type="Texture2D" uid="uid://b058lidrtk8kv" path="res://pics/bowl.svg" id="3_fxllr"]
+[ext_resource type="Texture2D" uid="uid://plhjy0oo3yje" path="res://pics/pepperoni.svg" id="3_kq571"]
+[ext_resource type="PackedScene" uid="uid://o5d6orguuvn" path="res://spawner.tscn" id="3_nbmal"]
+[ext_resource type="PackedScene" uid="uid://di5jyc81ceso4" path="res://pizza.tscn" id="4_yrpnb"]
+[ext_resource type="Script" path="res://scripts/manager.gd" id="6_4u0ux"]
+[ext_resource type="Texture2D" uid="uid://buhxej8u4teow" path="res://pics/mushrooms.svg" id="7_lrvdi"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_gbjhp")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 401.0
+offset_top = 452.0
+offset_right = 468.0
+offset_bottom = 482.0
+
+[node name="LineEdit" type="LineEdit" parent="."]
+offset_left = 404.0
+offset_top = 332.0
+offset_right = 471.063
+offset_bottom = 363.0
+text = "0"
+
+[node name="Pepperoni" type="Label" parent="."]
+offset_left = 389.0
+offset_top = 98.0
+offset_right = 496.0
+offset_bottom = 134.0
+
+[node name="Mushroom" type="Label" parent="."]
+offset_left = 410.0
+offset_top = 149.0
+offset_right = 491.0
+offset_bottom = 180.0
+
+[node name="Ham" type="Label" parent="."]
+offset_left = 400.0
+offset_top = 199.0
+offset_right = 480.0
+offset_bottom = 228.0
+
+[node name="SolutionLabel" type="Label" parent="."]
+offset_left = 521.0
+offset_top = 275.0
+offset_right = 629.0
+offset_bottom = 304.0
+
+[node name="Button" type="Button" parent="."]
+offset_left = 386.0
+offset_top = 273.0
+offset_right = 491.0
+offset_bottom = 315.0
+text = "Regenerate"
+
+[node name="Spawner" parent="." node_paths=PackedStringArray("drop_area") instance=ExtResource("3_nbmal")]
+position = Vector2(169, 496)
+scale = Vector2(0.175625, 0.163121)
+texture = ExtResource("3_fxllr")
+drop_area = NodePath("../Pizza")
+topping_type = "pepperoni"
+topping_texture = ExtResource("3_kq571")
+
+[node name="Pizza" parent="." instance=ExtResource("4_yrpnb")]
+position = Vector2(835, 305)
+
+[node name="Manager" type="Node" parent="."]
+script = ExtResource("6_4u0ux")
+
+[node name="Spawner2" parent="." instance=ExtResource("3_nbmal")]
+position = Vector2(174, 316)
+scale = Vector2(0.17125, 0.17125)
+texture = ExtResource("3_fxllr")
+topping_type = "mushroom"
+topping_texture = ExtResource("7_lrvdi")
+
+[node name="Toppings" type="Node" parent="."]
+
+[node name="ClearButton" type="Button" parent="."]
+offset_left = 758.0
+offset_top = 468.0
+offset_right = 902.0
+offset_bottom = 502.0
+text = "Clear Toppings"
+
+[node name="SubmitButton" type="Button" parent="."]
+offset_left = 393.0
+offset_top = 400.0
+offset_right = 474.0
+offset_bottom = 439.0
+text = "Submit"
+
+[node name="PepperoniSprite" type="Sprite2D" parent="."]
+position = Vector2(524, 115)
+scale = Vector2(0.045625, 0.045625)
+texture = ExtResource("3_kq571")
+
+[node name="MushroomSprite" type="Sprite2D" parent="."]
+position = Vector2(524, 169)
+scale = Vector2(0.0524999, 0.0524999)
+texture = ExtResource("7_lrvdi")
+
+[node name="HamSprite" type="Sprite2D" parent="."]
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="spawn_topping" from="Spawner" to="Manager" method="_on_spawner_spawn_topping"]
+[connection signal="topping_left" from="Pizza" to="." method="_on_pizza_topping_left"]
+[connection signal="topping_left" from="Pizza" to="Manager" method="_on_pizza_topping_left"]
+[connection signal="topping_placed" from="Pizza" to="." method="_on_pizza_topping_placed"]
+[connection signal="topping_placed" from="Pizza" to="Manager" method="_on_pizza_topping_placed"]
+[connection signal="spawn_topping" from="Spawner2" to="Manager" method="_on_spawner_spawn_topping"]
+[connection signal="pressed" from="ClearButton" to="Manager" method="clear_all"]
+[connection signal="pressed" from="SubmitButton" to="Manager" method="_on_submit_button_pressed"]

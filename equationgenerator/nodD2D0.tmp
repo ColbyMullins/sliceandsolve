@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://br3o1txfjfw2s"]
+
+[ext_resource type="Script" path="res://node_2d.gd" id="1_gbjhp"]
+[ext_resource type="PackedScene" uid="uid://vgnm4aqxccrb" path="res://dragable_sprite.tscn" id="2_vih2w"]
+[ext_resource type="PackedScene" uid="uid://o5d6orguuvn" path="res://spawner.tscn" id="3_nbmal"]
+[ext_resource type="PackedScene" uid="uid://di5jyc81ceso4" path="res://pizza.tscn" id="4_yrpnb"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_gbjhp")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 536.0
+offset_top = 322.0
+offset_right = 603.0
+offset_bottom = 352.0
+
+[node name="LineEdit" type="LineEdit" parent="."]
+offset_left = 537.0
+offset_top = 282.0
+offset_right = 604.063
+offset_bottom = 313.0
+
+[node name="EquationLabel" type="Label" parent="."]
+offset_left = 531.0
+offset_top = 223.0
+offset_right = 617.0
+offset_bottom = 259.0
+
+[node name="SolutionLabel" type="Label" parent="."]
+offset_left = 646.0
+offset_top = 284.0
+offset_right = 754.0
+offset_bottom = 313.0
+
+[node name="Button" type="Button" parent="."]
+offset_left = 663.0
+offset_top = 278.0
+offset_right = 725.0
+offset_bottom = 314.0
+text = "Reset"
+
+[node name="DragableSprite" parent="." instance=ExtResource("2_vih2w")]
+position = Vector2(254, 239)
+scale = Vector2(0.2, 0.2)
+
+[node name="Spawner" parent="." node_paths=PackedStringArray("drop_area") instance=ExtResource("3_nbmal")]
+position = Vector2(294, 448)
+drop_area = NodePath("../Pizza")
+
+[node name="Pizza" parent="." instance=ExtResource("4_yrpnb")]
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
