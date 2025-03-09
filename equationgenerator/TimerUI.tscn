@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjem4nw6wo47q"]
+
+[ext_resource type="Script" path="res://scripts/play_timer.gd" id="1_pfn51"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_66j1t"]
+size = Vector2(500, 40)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7wg3k"]
+size = Vector2(480, 20)
+
+[node name="TimerUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+offset_right = -1.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pfn51")
+
+[node name="MainTimer" type="Timer" parent="."]
+wait_time = 30.0
+autostart = true
+
+[node name="RestartDelay" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="TimerBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_top = 30.0
+offset_right = 250.0
+offset_bottom = 70.0
+grow_horizontal = 2
+value = 100.0
+texture_under = SubResource("PlaceholderTexture2D_66j1t")
+texture_progress = SubResource("PlaceholderTexture2D_7wg3k")
+texture_progress_offset = Vector2(10, 10)
+tint_under = Color(0, 0, 0, 1)
+tint_over = Color(0, 0, 0, 1)
+
+[node name="TimeRemainLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -62.5
+offset_top = 4.0
+offset_right = 62.5
+offset_bottom = 27.0
+grow_horizontal = 2
+text = "Time Remaining"
+
+[connection signal="timeout" from="MainTimer" to="." method="_on_main_timer_timeout"]
+[connection signal="timeout" from="RestartDelay" to="." method="_on_restart_delay_timeout"]
