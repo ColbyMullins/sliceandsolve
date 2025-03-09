@@ -2,7 +2,8 @@
 
 [Play on itch.io](https://cmullins27.itch.io/slice-and-solve)
 
-![image](https://github.com/user-attachments/assets/e3e11db2-02a6-4862-a74d-c1fe1f2661b2)
+![image](https://github.com/user-attachments/assets/ceb0bcb5-9e2d-4052-bfb2-b7b88dee3e4f)
+
 
 ### Instructions
 - Drag and drop toppings from their bowls to the pizza
