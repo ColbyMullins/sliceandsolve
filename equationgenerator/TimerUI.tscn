@@ -14,14 +14,14 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 2.0
-offset_right = -1.0
+offset_right = -621.0
 offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pfn51")
 
 [node name="MainTimer" type="Timer" parent="."]
-wait_time = 30.0
+wait_time = 60.0
 autostart = true
 
 [node name="RestartDelay" type="Timer" parent="."]
@@ -33,10 +33,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -250.0
-offset_top = 30.0
-offset_right = 250.0
-offset_bottom = 70.0
+offset_left = -259.5
+offset_top = 9.0
+offset_right = 240.5
+offset_bottom = 49.0
 grow_horizontal = 2
 value = 100.0
 texture_under = SubResource("PlaceholderTexture2D_66j1t")
@@ -46,6 +46,7 @@ tint_under = Color(0, 0, 0, 1)
 tint_over = Color(0, 0, 0, 1)
 
 [node name="TimeRemainLabel" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5

@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3grks33hn4et"]
+
+[ext_resource type="Script" path="res://scripts/order_scene.gd" id="1_1aaq2"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_7ce0e"]
+device = -1
+keycode = 67
+unicode = 99
+
+[sub_resource type="Shortcut" id="Shortcut_nnj3i"]
+events = [SubResource("InputEventKey_7ce0e")]
+
+[node name="OrderScene" type="Node2D"]
+script = ExtResource("1_1aaq2")
+
+[node name="CustomerContainer" type="Node" parent="."]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 7.0
+offset_top = 3.0
+offset_right = 1157.0
+offset_bottom = 239.0
+
+[node name="CustomerButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 475.0
+offset_top = 548.0
+offset_right = 655.0
+offset_bottom = 592.0
+theme_override_font_sizes/font_size = 20
+shortcut = SubResource("Shortcut_nnj3i")
+text = "Take new order"
+
+[node name="OrderRack" type="HBoxContainer" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.802
+offset_left = 128.0
+offset_top = 60.0
+offset_right = -94.0
+offset_bottom = 25.728
+theme_override_constants/separation = 160
+alignment = 1
+
+[node name="OrderRackLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 534.0
+offset_top = 14.0
+offset_right = 621.0
+offset_bottom = 37.0
+theme_override_font_sizes/font_size = 20
+text = "Order Rack"
+
+[node name="ScoreLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 950.0
+offset_top = 550.0
+offset_right = 1040.0
+offset_bottom = 584.0
+theme_override_font_sizes/font_size = 24
+text = "Score: 0"
+
+[connection signal="pressed" from="Control/CustomerButton" to="." method="_on_customer_button_pressed"]

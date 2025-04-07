@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="equationgenerator"
-run/main_scene="res://node_2d.tscn"
+config/name="Slice And Solve"
+run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://pics/icon.svg"
+config/icon="res://pics/pepperoni.svg"
 
 [dotnet]
 

@@ -1,0 +1,90 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1p3agq16tpjp"]
+
+[ext_resource type="Script" path="res://order.gd" id="1_a02kb"]
+[ext_resource type="Texture2D" uid="uid://plhjy0oo3yje" path="res://pics/pepperoni.svg" id="1_j0gn2"]
+[ext_resource type="Texture2D" uid="uid://buhxej8u4teow" path="res://pics/mushrooms.svg" id="2_prltx"]
+[ext_resource type="Texture2D" uid="uid://p8bb0je25wq6" path="res://pics/AAAAAAAAAAAA.webp" id="4_wshef"]
+
+[node name="Order" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 217.0
+offset_bottom = 197.0
+script = ExtResource("1_a02kb")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+z_index = 10
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.521
+anchor_top = 0.467
+anchor_right = 0.521
+anchor_bottom = 0.467
+offset_left = -200.494
+offset_top = -69.065
+offset_right = -27.494
+offset_bottom = 92.935
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_right = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="PepperoniContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 1.4
+
+[node name="PepperoniLabel" type="Label" parent="MarginContainer/VBoxContainer/PepperoniContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Pepperoni"
+
+[node name="PepperoniSprite" type="TextureRect" parent="MarginContainer/VBoxContainer/PepperoniContainer"]
+layout_mode = 2
+texture = ExtResource("1_j0gn2")
+expand_mode = 2
+
+[node name="MushroomContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MushroomLabel" type="Label" parent="MarginContainer/VBoxContainer/MushroomContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Mushroom"
+
+[node name="MushroomSprite" type="TextureRect" parent="MarginContainer/VBoxContainer/MushroomContainer"]
+layout_mode = 2
+texture = ExtResource("2_prltx")
+expand_mode = 2
+
+[node name="OnionContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="OnionLabel" type="Label" parent="MarginContainer/VBoxContainer/OnionContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Onion"
+
+[node name="OnionSprite" type="TextureRect" parent="MarginContainer/VBoxContainer/OnionContainer"]
+layout_mode = 2
+texture = ExtResource("4_wshef")
+expand_mode = 2
+
+[node name="TimeRemainingLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "60s"
+
+[node name="TimeRemainingBar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 6
+value = 40.0
+
+[node name="OrderButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Make pizza"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/OrderButton" to="." method="_on_order_button_pressed"]

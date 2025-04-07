@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://hbsu65hxp864"]
+
+[ext_resource type="PackedScene" uid="uid://br3o1txfjfw2s" path="res://node_2d.tscn" id="1_o3e0x"]
+[ext_resource type="PackedScene" uid="uid://d3grks33hn4et" path="res://order_scene.tscn" id="2_1c63m"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Node2D" parent="." instance=ExtResource("1_o3e0x")]
+visible = false
+
+[node name="OrderScene" parent="." instance=ExtResource("2_1c63m")]

@@ -8,6 +8,8 @@ extends Node2D
 @onready var manager: Node = $Manager
 signal solved
 signal winSound
+signal pizzaMode
+signal leavePizzaMode
 @onready var win_timer: Timer = $WinTimer
 @onready var pizza: Area2D = $Pizza
 const CHECKMARK = preload("res://pics/checkmark.webp")
@@ -26,7 +28,17 @@ func _ready() -> void:
 	line_edit.text_submitted.connect(_on_Line_Edit_text_entered)
 	resetEquations()
 	resetCheckmarks()
+
+func setSpecificEquations(pepEq, mushEq, onionEq):
+	pepperoni_label.text = pepEq
+	mushroom_label.text = mushEq
+	onion_label.text = onionEq
+	pizzaMode.emit()
+	setCheckmarks()
+	setSprites()
+	show()
 	
+
 func resetEquations() -> void:
 	var numToppings: int = randi_range(1, 3)
 	if (numToppings == 3):
@@ -178,10 +190,13 @@ func _on_Line_Edit_text_entered(new_text: String) -> bool:
 		var onionBool: bool = solveEquation(manager.toppings["onion"], onion_label)
 		if (pepBool and mushBool and onionBool):
 			solution_label.text = "Correct! Moving to next order..."
-			manager.slidePizzaOut()
+			#manager.slidePizzaOut()
+			manager.clear_all()
 			manager.updateScore()
 			win_timer.start()
 			winSound.emit()
+			leavePizzaMode.emit(true)
+			hide()
 			return true
 		else:
 			solution_label.text = "Incorrect, try again."
@@ -197,3 +212,12 @@ func _on_button_pressed() -> void:
 	resetCheckmarks()
 	resetEquations()
 	solution_label.text = ""
+
+
+func _on_exit_button_pressed() -> void:
+	leavePizzaMode.emit(false)
+	hide()
+
+
+func _on_order_scene_force_close_pizza() -> void:
+	hide()

@@ -7,9 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://o5d6orguuvn" path="res://spawner.tscn" id="3_nbmal"]
 [ext_resource type="PackedScene" uid="uid://di5jyc81ceso4" path="res://pizza.tscn" id="4_yrpnb"]
 [ext_resource type="Script" path="res://scripts/manager.gd" id="6_4u0ux"]
-[ext_resource type="Texture2D" uid="uid://brvbvlbsijipy" path="res://pics/onion.webp" id="7_iungy"]
 [ext_resource type="Texture2D" uid="uid://buhxej8u4teow" path="res://pics/mushrooms.svg" id="7_lrvdi"]
 [ext_resource type="PackedScene" uid="uid://cjem4nw6wo47q" path="res://TimerUI.tscn" id="8_j43xp"]
+[ext_resource type="Texture2D" uid="uid://p8bb0je25wq6" path="res://pics/AAAAAAAAAAAA.webp" id="10_5yy42"]
 [ext_resource type="AudioStream" uid="uid://divek64fh4sxn" path="res://audio/winsound.wav" id="11_16igx"]
 [ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="12_3iw2r"]
 [ext_resource type="AudioStream" uid="uid://c72h8w0mbv28f" path="res://audio/losesound.wav" id="13_3sriv"]
@@ -109,12 +109,13 @@ scale = Vector2(0.196562, 0.196562)
 texture = ExtResource("3_fxllr")
 drop_area = NodePath("../Pizza")
 topping_type = "onion"
-topping_texture = ExtResource("7_iungy")
+topping_texture = ExtResource("10_5yy42")
 
 [node name="Pizza" parent="." instance=ExtResource("4_yrpnb")]
 position = Vector2(586, 266)
 
 [node name="Manager" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("6_4u0ux")
 
 [node name="Toppings" type="Node" parent="."]
@@ -146,13 +147,14 @@ texture = ExtResource("7_lrvdi")
 [node name="OnionSprite" type="Sprite2D" parent="."]
 position = Vector2(1038, 175.25)
 scale = Vector2(0.0848437, 0.0848437)
-texture = ExtResource("7_iungy")
+texture = ExtResource("10_5yy42")
 
 [node name="WinTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
 
 [node name="ScoreLabel" type="Label" parent="."]
+visible = false
 offset_left = 1067.0
 offset_top = 6.0
 offset_right = 1139.0
@@ -160,6 +162,7 @@ offset_bottom = 29.0
 text = "Score: 0"
 
 [node name="TimerUI" parent="." instance=ExtResource("8_j43xp")]
+visible = false
 offset_left = 600.0
 offset_top = 571.0
 offset_right = 600.0
@@ -174,6 +177,44 @@ script = ExtResource("14_iyhr6")
 [node name="WinSoundPlayer" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("11_16igx")
 script = ExtResource("12_3iw2r")
+
+[node name="ExitButton" type="Button" parent="."]
+offset_left = 519.0
+offset_top = 561.0
+offset_right = 637.0
+offset_bottom = 602.0
+text = "Back/Give up"
+
+[node name="TipLabel" type="Label" parent="."]
+offset_left = 970.0
+offset_top = 17.0
+offset_right = 1095.0
+offset_bottom = 40.0
+text = "Solve all at once"
+
+[node name="PepNumLabel" type="Label" parent="."]
+offset_left = 1117.0
+offset_top = 56.0
+offset_right = 1157.0
+offset_bottom = 90.0
+theme_override_font_sizes/font_size = 24
+text = "0"
+
+[node name="MushNumLabel" type="Label" parent="."]
+offset_left = 1120.0
+offset_top = 110.0
+offset_right = 1204.0
+offset_bottom = 144.0
+theme_override_font_sizes/font_size = 24
+text = "0"
+
+[node name="OnionNumLabel" type="Label" parent="."]
+offset_left = 1121.0
+offset_top = 153.0
+offset_right = 1197.0
+offset_bottom = 187.0
+theme_override_font_sizes/font_size = 24
+text = "0"
 
 [connection signal="solved" from="." to="." method="_on_button_pressed"]
 [connection signal="solved" from="." to="Manager" method="clear_all"]
@@ -194,3 +235,4 @@ script = ExtResource("12_3iw2r")
 [connection signal="delay_timeout" from="TimerUI" to="." method="_on_timer_ui_delay_timeout"]
 [connection signal="delay_timeout" from="TimerUI" to="Manager" method="_on_timer_ui_delay_timeout"]
 [connection signal="main_timeout" from="TimerUI" to="Manager" method="_on_time_up"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

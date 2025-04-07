@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://2gimcxckhhvr"]
+
+[ext_resource type="Script" path="res://scripts/instructions.gd" id="1_0iivb"]
+
+[node name="Instructions" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0iivb")
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 503.0
+offset_top = 536.0
+offset_right = 650.0
+offset_bottom = 588.0
+text = "Back to title"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 295.0
+offset_top = 120.0
+offset_right = 855.0
+offset_bottom = 492.0
+text = "Click \"Take Order\" to take a customer's order. You can take as many orders as you like, but customers will get impatient and leave if you do not complete their order in time (this it the depleting bar under the order). 
+
+Click \"Make pizza\" on any order to start making that order. This brings to you the pizza making screen. Drag and drop the right amount of each topping onto the pizza, based on the equations for each topping in the customer's order.
+
+You can also give up on an order if you need to by pressing the give up button on the bottom of the screen in the pizza making screen. For every correct order, you get 1 point, and for every order that you either give up on or run out of time, you lose a point.
+
+Hint: Remember to use PEMDAS when solving the equations!"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

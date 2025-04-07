@@ -7,6 +7,9 @@ signal main_timeout
 signal delay_timeout
 
 
+func _ready() -> void:
+	main_timer.paused = true
+
 func _process(delta: float) -> void:
 	timer_bar.value = (main_timer.time_left / main_timer.wait_time) * 100
 
